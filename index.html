@@ -45,6 +45,9 @@
               <a class="nav-link" href="#admin">Admin</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="#mejoras">Mejoras ágiles</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#video">Video</a>
             </li>
             <li class="nav-item">
@@ -226,9 +229,13 @@
               <p>
                 Este bloque simula el registro básico de movimientos. No
                 reemplaza un backend real, pero permite demostrar la interacción
-                principal del prototipo.
+                principal del prototipo con validación, mensajes de confirmación
+                y actualización de indicadores.
               </p>
-              <form id="movementForm" class="demo-form" autocomplete="off">
+              <form id="movementForm" class="demo-form" autocomplete="off" novalidate>
+                <p class="form-note">
+                  Mejora aplicada: el formulario valida datos antes de actualizar la demo.
+                </p>
                 <label for="movementType">Tipo de movimiento</label>
                 <select id="movementType" class="form-select" required>
                   <option value="income">Ingreso</option>
@@ -250,10 +257,27 @@
                   min="1000"
                   step="1000"
                   placeholder="Ej. 50000"
+                  aria-describedby="amountHelp movementFeedback"
                   required
                 />
+                <small id="amountHelp" class="text-muted">
+                  Ingresa valores desde $1.000 COP.
+                </small>
+                <div
+                  id="movementFeedback"
+                  class="form-feedback"
+                  role="status"
+                  aria-live="polite"
+                ></div>
                 <button class="btn btn-primary w-100 mt-3" type="submit">
                   Registrar movimiento
+                </button>
+                <button
+                  id="resetDemo"
+                  class="btn btn-outline-secondary w-100 mt-2"
+                  type="button"
+                >
+                  Reiniciar demo
                 </button>
               </form>
             </div>
@@ -280,6 +304,21 @@
                     <div>
                       <small>Gastos</small
                       ><strong id="expenseValue">$1.650.000</strong>
+                    </div>
+                  </div>
+                  <div class="budget-summary">
+                    <div class="d-flex justify-content-between">
+                      <small>Presupuesto usado</small>
+                      <small id="budgetText">47%</small>
+                    </div>
+                    <div
+                      class="progress"
+                      role="progressbar"
+                      aria-label="Presupuesto usado en la demo"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    >
+                      <div id="budgetProgress" class="progress-bar" style="width: 47%"></div>
                     </div>
                   </div>
                   <h4>Últimos movimientos</h4>
@@ -398,7 +437,96 @@
         </div>
       </section>
 
-      <section id="video" class="section-block">
+      <section id="mejoras" class="section-block">
+        <div class="container">
+          <div class="text-center mb-5">
+            <h2 class="fw-bold">Mejoras aplicadas con enfoque ágil</h2>
+            <p class="text-muted">
+              Esta sección evidencia los ajustes realizados al prototipo después
+              de organizar el trabajo mediante Kanban y priorizar cambios de bajo
+              riesgo para una nueva entrega incremental.
+            </p>
+          </div>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6 col-lg-3">
+              <article class="improvement-card">
+                <span>01</span>
+                <h3>Validación del formulario</h3>
+                <p>
+                  Se evita registrar movimientos sin valor o con montos menores
+                  al mínimo definido para la demo.
+                </p>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <article class="improvement-card">
+                <span>02</span>
+                <h3>Mensajes al usuario</h3>
+                <p>
+                  La interfaz confirma registros correctos y muestra alertas
+                  claras cuando hay datos incompletos.
+                </p>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <article class="improvement-card">
+                <span>03</span>
+                <h3>Indicador de presupuesto</h3>
+                <p>
+                  El porcentaje usado se recalcula de forma visual cuando se
+                  registran nuevos ingresos o gastos.
+                </p>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <article class="improvement-card">
+                <span>04</span>
+                <h3>Persistencia local</h3>
+                <p>
+                  La demo conserva temporalmente los movimientos en el navegador
+                  sin afirmar que exista una base de datos real.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="kanban-board">
+            <article>
+              <h3>Pendiente</h3>
+              <ul>
+                <li>Autenticación real</li>
+                <li>API Laravel</li>
+                <li>Reportes con datos reales</li>
+              </ul>
+            </article>
+            <article>
+              <h3>En proceso</h3>
+              <ul>
+                <li>Revisión responsive</li>
+                <li>Ajustes visuales menores</li>
+              </ul>
+            </article>
+            <article>
+              <h3>En prueba</h3>
+              <ul>
+                <li>Registro de movimientos</li>
+                <li>Mensajes de validación</li>
+              </ul>
+            </article>
+            <article>
+              <h3>Terminado</h3>
+              <ul>
+                <li>Prototipo publicado</li>
+                <li>Demo interactiva</li>
+                <li>Sección de mejoras ágiles</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="video" class="section-block section-muted">
         <div class="container">
           <div class="row g-4 align-items-center">
             <div class="col-lg-5">
